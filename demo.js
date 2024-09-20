@@ -140,7 +140,7 @@ function getAnswer() {
 function renderBestFriend(bestFriendResult) {
   let html = "";
   bestFriendResult.forEach((item) => {
-    html += `<div class="card border-0 text-bg-dark h-100">
+    html += `<div class="card border-0 text-bg-dark h-100" style="max-width: 27rem;">
             <img
               src="./assets/images/${item.image}"
               class="card-img"
