@@ -1,227 +1,76 @@
-const questionList = [
+let data = [
   {
-    id: "001",
-    title: "吃咖哩飯的時候：",
-    select: [
-      { name: "不拌", value: "E" },
-      { name: "全拌", value: "I" },
-    ],
+    id: 0,
+    name: "綠島自由行套裝行程",
+    imgUrl:
+      "https://github.com/hexschool/2022-web-layout-training/blob/main/js_week5/travel_1.png?raw=true",
+    area: "高雄",
+    description: "嚴選超高CP值綠島自由行套裝行程，多種綠島套裝組合。",
+    group: 87,
+    price: 1400,
+    rate: 10,
   },
   {
-    id: "002",
-    title: "第一次約會：",
-    select: [
-      { name: "動物園", value: "N" },
-      { name: "遊樂園", value: "S" },
-      { name: "海邊", value: "N" },
-      { name: "咖啡店", value: "S" },
-    ],
+    id: 1,
+    name: "清境高空觀景步道",
+    imgUrl:
+      "https://github.com/hexschool/2022-web-layout-training/blob/main/js_week5/travel_4.png?raw=true",
+    area: "台北",
+    description:
+      "清境農場青青草原數十公頃碧草，這些景觀豐沛了清境觀景步道的風格，也涵養它無可取代的特色。",
+    group: 99,
+    price: 240,
+    rate: 2,
   },
   {
-    id: "003",
-    title: "這堂課，最喜歡的知識點：(並說明)",
-    select: [
-      { name: "forEach", value: "T" },
-      { name: "filter", value: "T" },
-      { name: "reduce", value: "T" },
-    ],
-  },
-  {
-    id: "004",
-    title: "最常看的串流平台",
-    select: [
-      { name: "Netflix", value: "P" },
-      { name: "Disney +", value: "J" },
-      { name: "HBO Go", value: "P" },
-      { name: "愛奇藝", value: "J" },
-    ],
+    id: 2,
+    name: "山林悠遊套票",
+    imgUrl:
+      "https://github.com/hexschool/2022-web-layout-training/blob/main/js_week5/travel_3.png?raw=true",
+    area: "台中",
+    description:
+      "山林悠遊套票，結合南投清境高空步道、雙龍瀑布七彩吊橋、瑞龍瀑布園區之熱門景點。",
+    group: 20,
+    price: 1765,
+    rate: 7,
   },
 ];
+// 1.取得<ul></ul>DOM
+const ticketList = document.getElementById("ticketList");
 
-const frinendList = [
-  {
-    name: "狐狸姨姨",
-    age: 49,
-    mbti: "INTP",
-    describe: "舉手投足散發出貴婦般的優雅，寫code也非常的優雅",
-    image: "IMG_0123.JPG",
-  },
-  {
-    name: "蝙蝠妹",
-    age: 19,
-    mbti: "INTJ",
-    describe: "喜愛夜生活的地雷系女孩，個性慢熟",
-    image: "IMG_0124.JPG",
-  },
-  {
-    name: "寶豬奶奶",
-    age: 65,
-    mbti: "ENTJ",
-    describe: "擅長保養，完全看不出歲月的痕跡",
-    image: "IMG_0125.JPG",
-  },
-  {
-    name: "企鵝妹",
-    age: 18,
-    mbti: "ENTP",
-    describe: "喜愛戶外擁抱陽光，看似冰冷實際上很熱情",
-    image: "IMG_0126.JPG",
-  },
-  {
-    name: "犬小姐",
-    age: 28,
-    mbti: "ISTP",
-    describe: "朝九晚五的前端工程師，喜愛料理",
-    image: "IMG_0127.JPG",
-  },
-  {
-    name: "兔小姐",
-    age: 23,
-    mbti: "ISTJ",
-    describe: "剛進入職場的工程師，正在為成為前端還是後端煩惱",
-    image: "IMG_0128.JPG",
-  },
-  {
-    name: "鹿姐",
-    age: 33,
-    mbti: "ESTP",
-    describe: "高挑的身材，似乎比你高一顆頭",
-    image: "IMG_0129.JPG",
-  },
-  {
-    name: "海獺熊貓",
-    age: 41,
-    mbti: "ESFJ",
-    describe: "爸爸是海獺，媽媽是熊貓，異國感十足的地方太太",
-    image: "IMG_0130.JPG",
-  },
-  {
-    name: "狸貓姐",
-    age: 35,
-    mbti: "ESTJ",
-    describe: "喜愛中性打扮，相處起來就像是兄弟一樣",
-    image: "IMG_0131.JPG",
-  },
-];
-
-const questionView = document.getElementById("questionView");
-const bestFriendView = document.getElementById("bestFriendView");
-const questionButton = document.getElementById("questionButton");
-questionButton.addEventListener("click", () => getAnswer());
-
-// foreach取得每題分數
-function getSelectNum() {
-  let selectList = [];
-  questionList.forEach((item, index) => {
-    selectList.push(
-      document.querySelector(`input[name="question${index}"]:checked`).value
-    );
-  });
-  return selectList;
-}
-
-// (*´∀`)~♥練習使用foreach or reduce or filter
-// 將index.html內的 id="allFriend"區塊用迴圈進行渲染
-
-// (*´∀`)~♥練習使用foreach or reduce or filter
-// mbti字串合併
-function calculateSelect(selectList) {
-  let totalString = '';
-  selectList.forEach((string) => {
-    totalString += string;
-  });
-  return totalString;
-}
-
-// (*´∀`)~♥練習使用foreach or reduce or filter
-// 回傳過濾後的結果
-function filterBestFriend(totalString) {
-  let bestFriendResult = [];
-  frinendList.forEach((friendData) => {
-    if (friendData.mbti === totalString) {
-      bestFriendResult.push(friendData);
-    }
-  });
-  return bestFriendResult;
-}
-
-function getAnswer() {
-  const selectList = getSelectNum();
-  const totalString = calculateSelect(selectList);
-  const bestFriendResult = filterBestFriend(totalString);
-  renderBestFriend(bestFriendResult);
-}
-
-// 渲染測驗結果
-function renderBestFriend(bestFriendResult) {
-  let html = "";
-  bestFriendResult.forEach((item) => {
-    html += `<div class="card border-0 text-bg-dark h-100" style="max-width: 27rem;">
-            <img
-              src="./assets/images/${item.image}"
-              class="card-img"
-              alt="..."
-            />
-            <div
-              class="card-img-overlay text-secondary d-flex flex-column justify-content-between"
-            >
-              <h5 class="card-title">
-                ${item.name}-<small>${item.age}</small>
-              </h5>
-              <p
-                class="card-text lh-1 shadow-lg bg-light opacity-75"
-              >
-                <small>${item.describe}</small>
-              </p>
+// 2.forEach版型的累加<li></li>
+let html = "";
+data.forEach(function (item) {
+  // html += `<li class="ticketCard">${item.name}</li>`
+  html += `<li class="ticketCard">
+            <div class="ticketCard-img">
+              <a href="#">
+                <img src="${item.imgUrl}" alt="">
+              </a>
+              <div class="ticketCard-region">${item.area}</div>
+              <div class="ticketCard-rank">${item.rate}</div>
             </div>
-          </div>`;
-  });
-  bestFriendView.innerHTML = html;
-}
+            <div class="ticketCard-content">
+              <div>
+                <h3>
+                  <a href="#" class="ticketCard-name">${item.name}</a>
+                </h3>
+                <p class="ticketCard-description">
+                  ${item.description}
+                </p>
+              </div>
+              <div class="ticketCard-info">
+                <p class="ticketCard-num">
+                  <span><i class="fas fa-exclamation-circle"></i></span>
+                  剩下最後 <span id="ticketCard-num"> ${item.group} </span> 組
+                </p>
+                <p class="ticketCard-price">
+                  TWD <span id="ticketCard-price">$${item.price}</span>
+                </p>
+              </div>
+            </div>
+          </li>`;
+});
 
-// foreach 渲染題目
-function renderQuestionView() {
-  let html = "";
-  questionList.forEach((item, index) => {
-    const questionHtml = renderSelectView(item.select, index);
-    html += `<div class="mb-4">
-        <h6>${index + 1}.${item.title}</h6>
-        ${questionHtml}
-      </div>`;
-  });
-  questionView.innerHTML = html;
-}
-
-// 選染題目中的選項
-function renderSelectView(selectList, id) {
-  let questionHtml = "";
-  selectList.forEach((item, index) => {
-    if (index === 0) {
-      questionHtml += `<div class="form-check form-check-inline">
-          <input
-            class="form-check-input"
-            type="radio"
-            name="question${id}"
-            id="${id}${index}"
-            value=${item.value}
-            checked
-          />
-          <label class="form-check-label" for="${id}${index}">${item.name}</label>
-        </div>`;
-    } else {
-      questionHtml += `<div class="form-check form-check-inline">
-          <input
-            class="form-check-input"
-            type="radio"
-            name="question${id}"
-            id="${id}${index}"
-            value=${item.value}
-          />
-          <label class="form-check-label" for="${id}${index}">${item.name}</label>
-        </div>`;
-    }
-  });
-  return questionHtml;
-}
-
-renderQuestionView();
+// 3.將累加結果使用innerHTML寫進DOM
+ticketList.innerHTML = html;
